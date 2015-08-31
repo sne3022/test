@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf8'>
+<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script src="semantic/dist/semantic.min.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="js/controller/moviecontroller.js"></script>
+<script src="js/service/movieservice.js"></script>
+<script src="taffydb-master/taffy.js"></script>
+<script type="text/javascript">
+</script>
+</head>
+<body ng-app="moviecontrollers" ng-controller="ticketingcontroller">
+<div class="container">
+	<div class="ui grid columns segment inverted center aligned celled">
+		<div class="row">
+			<div class="column three wide">
+				<div class="header">
+				<h3>영화입력</h3>
+				</div>
+			</div>
+			<div class="column three wide">
+				<h3>극장입력</h3>
+			</div>
+
+			<div class="column three wide">
+				<h3>극장별 상영영화</h3>
+			</div>
+
+			<div class="column three wide">
+				<h3>상영영화 좌석</h3>
+			</div>
+		</div>
+
+		<div class="row" style="background: gray; color:#000;">
+			<div class="column three wide">
+				<div class="ui list link selection">
+					<a class="item" ng-repeat="movie in currentMovielist track by $index" ng-click="reflash('movie',movie.subject)" moviemenu>
+						<div class="ui label circular" ng-class="{red:movie.r18, orange:movie.r15, yellow:movie.r12, green:movie.all}"><%movie.grade%>
+						</div>
+						<%movie.subject%>
+					</a>
+				</div>
+			</div>
+			
+			<div class="column three wide">
+				<div class="two ui two columns grid">
+					<div class="column">
+						<div class="ui secondary vertical pointing menu compact">
+							<a class="item" ng-click="country='서울'" pointingmenu>서울
+							</a>
+							<a class="item" ng-click="country='천안'" pointingmenu>천안
+							</a>
+							<a class="item" ng-click="country='서울'" pointingmenu>수원
+							</a>
+							<a class="item" ng-click="country='성남'" pointingmenu>성남
+							</a>
+						</div>
+					</div>
+					<div class="column left aligned" >
+						<div class="ui list very relaxed selection">
+							<a class="item" ng-repeat="theater in currentTheatherlist | filter:country track by $index" ng-click="reflash('theater', theater.name)" theatermenu>
+								<div class="header">
+								<%theater.name%>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="column three wide">	
+				<div class="ui list relaxed selection divided">
+					<div class="item">
+						<div class="ui statistic">
+							<div class="label"><%year%></div>
+							<div class="value"><%month%></div>							
+						</div>
+					</div>
+				
+					<a class="item" ng-repeat="date in datelist" ng-click="reflash('date', date.date)" datemenu>
+						<div class="ui label clickcolor" ng-class="{red:date.day=='일', blue:date.day=='토'}">
+							<%date.day%>
+							<div class="detail">
+								<%date.date%>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+
+			<div class="column three wide">
+				<div class="ui horizontal list seatmovie hidden">
+					<a class="item" ng-repeat="seat in currentScreenlist track by $index" seatmenu>
+						<div class="ui label seatcolor">
+							<%seat.time%>
+							<div class="detail">
+								<%seat.count%>석
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>
+</body>
+</html>

@@ -1,9 +1,300 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <title></title>
-</head>
-<body>
-안녕
+<meta charset='utf8'>
+<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script src="semantic/dist/semantic.min.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="js/controller/moviecontroller.js"></script>
+<script src="js/service/movieservice.js"></script>
+<script src="taffydb-master/taffy.js"></script>
+<script src="bower_components/angular-semantic-ui/dist/angular-semantic-ui.js"></script>
+<script type="text/javascript">
+$(
+	function()
+	{
+		$('.ui.labeled.icon.sidebar').sidebar('toggle');
+		$(".ui.checkbox").checkbox();
+	}
+)	
+function showsidebar()
+{
+	$('.ui.sidebar').sidebar('toggle');
+}
+
+function showModalMovie()
+{
+	$('.first.modal')
+	  .modal('show')
+	;
+}
+
+function showModalCinema()
+{
+	$('.second.modal')
+	  .modal('show')
+	;
+}
+
+function showModalShowMovie()
+{
+	$('.three.modal')
+	  .modal('show')
+	;
+}
+
+function close()
+{
+	$(".first.modal").modal('hide');
+
+}
+
+function showModalSeat()
+{
+	$('.four.modal')
+	  .modal('show')
+	;
+}
+</script>
+<body ng-app="moviecontrollers" ng-controller="moviecontroller">
+  <div class="ui vertical inverted sidebar labeled icon menu">
+  <a class="item" onclick="showModalMovie()">
+    <i class="home icon">
+    </i>
+    영화 입력
+  </a>
+
+   <a class="item" onclick="showModalCinema()">
+    <i class="home icon">
+    </i>
+    극장 입력
+  </a>
+
+   <a class="item" onclick="showModalShowMovie()">
+    <i class="home icon">
+    </i>
+    극장별 상영영화
+  </a>
+
+  <a class="item" onclick="showModalSeat()">
+    <i class="home icon">
+    </i>
+   상영영화 좌석
+  </a>
+</div>
+
+
+
+<div class="ui inverted red button active button" onclick="showsidebar()">CGV 영화관
+</div>
+
+<div class="ui first modal" style="height:436px;">
+
+	<div class="title">
+	<h1>MOVIE</h1>
+	</div>
+	<div class="ui divider"></div>
+	<div class="content">
+
+	      <div class="ui labeled input">
+			  <div class="ui label">
+			    제목
+			  </div>
+			  <input type="text" ng-model="movie.subject" placeholder="제목을 입력하세요.">
+		  </div><br/></br/>
+
+
+		  <select class="ui dropdown" ng-model="movie.category">
+		  <option value="">장르</option>
+		  <option value="1">액션</option>
+		  <option value="2">코믹</option>
+		  <option value="3">개그</option>
+		  </select><br/><br/>
+
+
+		  <select class="ui dropdown" ng-model="movie.grade">
+		  <option value="">등급</option>
+		  <option value="all">모든</option>
+		  <option value="r12">12세미만</option>
+		  <option value="r15">15세미만</option>
+		  <option value="r18">18세미만</option>
+		  <br>
+		  </select><br/><br/>
+
+
+		  <div class="ui labeled input">
+			  <div class="ui label">
+			    상영시작날짜
+			  </div>
+			  <input type="text" ng-model="movie.startdate">
+		  </div><br/></br/>
+		  
+
+		  <div class="ui labeled input">
+			  <div class="ui label">
+			    상영마감날짜
+			  </div>
+			  <input type="text" ng-model="movie.enddate">
+		  </div><br/></br/>
+
+
+		  <div class="ui ten primary button" ng-click="save()">영화 추가</div>
+		  <div class="ui button">취소</div>
+
+		  <button ng-click ="showdata()">
+	</div>
+</div>
+
+<div class="ui second modal" style="height:238px;" ng-controller="theatercontroller">
+	
+	<div class="header">
+		<h1>극장 입력</h1>
+	</div>
+
+	<div class="content">
+		<form class="ui form">
+			<div class="field">
+			    <label>극장명</label>
+			  <input type="text" ng-model="theater.name" placeholder="극장명을 입력하세요.">
+			</div><br/></br/>
+
+
+			<div class="field">
+			  <label>지역명</label>
+			  <select class="ui dropdown" ng-model="theater.country">
+			  <option value="">지역명</option>
+			  <option value="1">천안</option>
+			  <option value="2">수원</option>
+			  <option value="3">성남</option>
+			  <option value="3">서울</option>
+			  </select><br/>
+			</div>
+		</form>
+	</div>
+
+	<div class="ui primary button" ng-click="save()">극장 추가</div>
+	<div class="ui button">취소</div>
+</div>
+
+<div class="ui three modal" style="height:436px;" ng-controller="screencontroller">
+	<div class="header">
+		<h1>극장별 상영영화 </h1>
+	</div>
+
+	<div class="content">
+		<form class="ui form">
+		
+		<div class="field">
+		  <label>극장명</label>
+		  <select class="ui dropdown" ng-model="screen.theater" ng-options="theater.name for theater in theaterlist">
+		  </select>
+		</div>
+
+		<div class="field">
+			  <label>영화제목</label>
+			  <select class="ui dropdown" ng-model="screen.movie" ng-options="movie.subject for movie in movielist " placeholder="영화제목을 입력하세요.">
+		 	  </select>
+		</div>
+
+		<div class="field">
+			  <label>입력방식</label>
+
+			  <div class="ui top attached tabular menu">
+				  <a class="item active" data-tab="auto">자동</a>
+				  <a class="item" data-tab="stick">수동</a>
+			  </div>
+
+			  <div class="ui bottom attached tab segment active" data-tab="auto">
+				  <div class="field">
+					  <label>상영시간</label>
+					  <div class="ui input" ng-repeat="item in times">
+					  		<input type="text" ng-model="item.time" placeholder="시간을 입력하세요.">
+					  </div>
+
+					  <div class="ui button" ng-click="addtime()">
+					  		<i class="plus icon"></i>
+					  </div>
+				  </div>
+				  <div class="field">
+				  <div class="ui button" ng-click="saveAuto()">저장</div>
+				  </div>
+			  </div>
+			  <div class="ui bottom attached tab segment" data-tab="stick">
+				  
+			 	<div class="field">
+			  		<label>상영시간</label>
+				   <input type="text" ng-model="screen.time">
+				</div>
+
+				<div class="field">
+					  <label>코드명</label>
+					  <input type="text" ng-model="screen.code" placeholder="코드명을 입력하세요.">
+				</div>
+
+				<div class="field">
+					  <label>날짜</label>
+					  <input type="text" ng-model="screen.date" name="date ">
+				</div>
+
+				<div class="field">
+					<div class="ui primary button" ng-click="save()">상영영화 추가</div>
+					<div class="ui button">취소</div>
+				</div>
+			 </div>
+		</div><!--field-->
+
+	</form>
+	</div><!--content-->
+</div>
+
+<div class="ui four modal" style="height:436px;" ng-controller="seatcontroller">
+	<div class="header">
+		<h1>상영영화 좌석</h1>
+	</div>
+
+	<div class="content">
+
+		<form class="ui form">
+		<div class="field">
+			  <label>코드</label>
+
+			  <div class="ui list divided relaxed">
+			  	<div class="item" ng-repeat="screen in screenlist track by $index">
+			  		
+			  		
+			  		<div class="content">
+				  		<div class="header">
+					  		<input type="checkbox" name="screen.screen.code" ng-model="screen.checked">
+					  		<label><%screen.code%></label>
+				  		</div>
+				  	</div>
+					
+					<div class="content right floated">
+						<label >좌석</label>
+			  			<input type="text" ng-model="screen.count">
+			  		</div>
+			  	</div>
+			  	<div class="ui button" ng-click="delete()">삭제</div>
+			  	<div class="ui button"ng-click="save()">저장</div>
+			  	
+			  </div>
+		</div>
+
+		</form>
+
+	</div>
+
+	<div class="ui primary button" ng-click=" ()">예약</div>
+	<div class="ui button">취소</div>
+	<button ng-click="showdata()"></button>
+</div>
 </body>
 </html>

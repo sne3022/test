@@ -21,6 +21,7 @@
 /*******************************
             Button
 *******************************/
+& {
 
 .ui.button {
   cursor: pointer;
@@ -57,6 +58,11 @@
   -webkit-tap-highlight-color: @tapColor;
 }
 
+
+/* Load CSS Overrides and Inline */
+.loadUIOverrides();
+
+}
 
 /*******************************
             States
