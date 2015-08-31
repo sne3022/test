@@ -1,9 +1,202 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <title></title>
-</head>
+<meta charset='utf8'>
+<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script src="semantic/dist/semantic.min.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script type="text/javascript">
+$(
+	function()
+	{
+		$('.ui.labeled.icon.sidebar').sidebar('toggle');
+	}
+)	
+function showsidebar()
+{
+	$('.ui.sidebar').sidebar('toggle');
+}
+
+function showModalMovie()
+{
+	$('.first.modal')
+	  .modal('show')
+	;
+}
+
+function showModalCinema()
+{
+	$('.second.modal')
+	  .modal('show')
+	;
+}
+
+function showModalShowMovie()
+{
+	$('.three.modal')
+	  .modal('show')
+	;
+}
+
+function close()
+{
+	alert("d");
+	$(".first.modal").modal('hide');
+
+}
+</script>
 <body>
-안녕
+  <div class="ui vertical inverted sidebar labeled icon menu">
+  <a class="item" onclick="showModalMovie()">
+    <i class="home icon">
+    </i>
+    영화 입력
+  </a>
+
+   <a class="item" onclick="showModalCinema()">
+    <i class="home icon">
+    </i>
+    극장 입력
+  </a>
+
+   <a class="item" onclick="showModalShowMovie()">
+    <i class="home icon">
+    </i>
+    극장별 상영영화
+  </a>
+</div>
+
+<div class="ui inverted red button active button" onclick="showsidebar()">CGV 영화관
+</div>
+
+<div class="ui first modal" style="height:436px;">
+
+	<div class="title">
+	<h1>MOVIE</h1>
+	</div>
+	<div class="ui divider"></div>
+	<div class="content">
+	      <div class="ui labeled input">
+			  <div class="ui label">
+			    극장명
+			  </div>
+			  <input type="text" placeholder="극장명을 입력하세요.">
+		  </div><br/></br/>
+
+		  <select class="ui dropdown">
+		  <option value="">장르</option>
+		  <option value="1">액션</option>
+		  <option value="2">코믹</option>
+		  <option value="3">개그</option>
+		  </select><br/><br/>
+
+		  <select class="ui dropdown">
+		  <option value="">등급</option>
+		  <option value="1">15세미만</option>
+		  <option value="2">17세미만</option>
+		  <option value="3">19세미만</option>
+		  <br>
+		  </select><br/><br/>
+
+		  <div class="ui labeled input">
+			  <div class="ui label">
+			    상영시작날짜
+			  </div>
+			  <input type="date" name="date">
+		  </div><br/></br/>
+		  
+		  <div class="ui labeled input">
+			  <div class="ui label">
+			    상영마감날짜
+			  </div>
+			  <input type="date" name="date">
+		  </div><br/></br/>
+		  <div class="ui ten primary button">영화 추가</div>
+		  <div class="ui button">취소</div>
+	</div>
+</div>
+
+<div class="ui second modal" style="height:238px;">
+	<div class="title">
+		<h1>극장 입력</h1>
+	</div>
+	<div class="ui divider"></div>
+	<div class="content">
+		<div class="ui labeled input">
+		  <div class="ui label">
+		    극장명
+		  </div>
+		  <input type="text" placeholder="극장명을 입력하세요.">
+		</div><br/></br/>
+		<div class="ui labeled input">
+		  <div class="ui label">
+		    지역명
+		  </div>
+		  <select class="ui dropdown">
+		  <option value="">지역명</option>
+		  <option value="1">천안</option>
+		  <option value="2">수원</option>
+		  <option value="3">성남</option>
+		  <option value="3">서울</option>
+		  </select><br/>
+		</div>
+	</div>
+
+	<div class="ui primary button">극장 추가</div>
+	<div class="ui button">취소</div>
+</div>
+
+<div class="ui three modal" style="height:436px;">
+	<div class="title">
+		<h1>극장별 상영영화 </h1>
+	</div>
+	<div class="ui divider"></div>
+	<div class="content">
+		<div class="ui labeled input">
+			  <div class="ui label">
+			    극장명
+			  </div>
+			  <input type="text" placeholder="극장명을 입력하세요.">
+		</div><br/></br/>
+		<div class="ui labeled input">
+			  <div class="ui label">
+			   날짜
+			  </div>
+			  <input type="date" name="date">
+		  </div><br/></br/>
+
+		<div class="ui labeled input">
+			  <div class="ui label">
+			    영화제목
+			  </div>
+			  <input type="text" placeholder="영화제목을 입력하세요.">
+		</div><br/></br/>
+
+		<div class="ui labeled input">
+			  <div class="ui label">
+			    상영시간
+			  </div>
+			  <input type="time">
+		</div><br/></br/>
+
+		<div class="ui labeled input">
+			  <div class="ui label">
+			    코드명
+			  </div>
+			  <input type="text" placeholder="코드명을 입력하세요.">
+		</div><br/></br/>
+	</div>
+	<div class="ui primary button">상영영화 추가</div>
+	<div class="ui button">취소</div>
+</div>
+
 </body>
 </html>
