@@ -13,16 +13,22 @@
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="bower_components/angular-resource/angular-resource.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
+<<<<<<< HEAD
 <script src="js/controller/moviecontroller.js"></script>
 <script src="js/service/movieservice.js"></script>
 <script src="taffydb-master/taffy.js"></script>
 <script src="bower_components/angular-semantic-ui/dist/angular-semantic-ui.js"></script>
+=======
+>>>>>>> 290aec342da0bc25b1491ef57643733aadbf45e1
 <script type="text/javascript">
 $(
 	function()
 	{
 		$('.ui.labeled.icon.sidebar').sidebar('toggle');
+<<<<<<< HEAD
 		$(".ui.checkbox").checkbox();
+=======
+>>>>>>> 290aec342da0bc25b1491ef57643733aadbf45e1
 	}
 )	
 function showsidebar()
@@ -53,6 +59,7 @@ function showModalShowMovie()
 
 function close()
 {
+<<<<<<< HEAD
 	$(".first.modal").modal('hide');
 
 }
@@ -65,6 +72,14 @@ function showModalSeat()
 }
 </script>
 <body ng-app="moviecontrollers" ng-controller="moviecontroller">
+=======
+	alert("d");
+	$(".first.modal").modal('hide');
+
+}
+</script>
+<body>
+>>>>>>> 290aec342da0bc25b1491ef57643733aadbf45e1
   <div class="ui vertical inverted sidebar labeled icon menu">
   <a class="item" onclick="showModalMovie()">
     <i class="home icon">
@@ -83,6 +98,7 @@ function showModalSeat()
     </i>
     극장별 상영영화
   </a>
+<<<<<<< HEAD
 
   <a class="item" onclick="showModalSeat()">
     <i class="home icon">
@@ -93,6 +109,10 @@ function showModalSeat()
 
 
 
+=======
+</div>
+
+>>>>>>> 290aec342da0bc25b1491ef57643733aadbf45e1
 <div class="ui inverted red button active button" onclick="showsidebar()">CGV 영화관
 </div>
 
@@ -103,6 +123,7 @@ function showModalSeat()
 	</div>
 	<div class="ui divider"></div>
 	<div class="content">
+<<<<<<< HEAD
 
 	      <div class="ui labeled input">
 			  <div class="ui label">
@@ -113,12 +134,23 @@ function showModalSeat()
 
 
 		  <select class="ui dropdown" ng-model="movie.category">
+=======
+	      <div class="ui labeled input">
+			  <div class="ui label">
+			    극장명
+			  </div>
+			  <input type="text" placeholder="극장명을 입력하세요.">
+		  </div><br/></br/>
+
+		  <select class="ui dropdown">
+>>>>>>> 290aec342da0bc25b1491ef57643733aadbf45e1
 		  <option value="">장르</option>
 		  <option value="1">액션</option>
 		  <option value="2">코믹</option>
 		  <option value="3">개그</option>
 		  </select><br/><br/>
 
+<<<<<<< HEAD
 
 		  <select class="ui dropdown" ng-model="movie.grade">
 		  <option value="">등급</option>
@@ -130,18 +162,35 @@ function showModalSeat()
 		  </select><br/><br/>
 
 
+=======
+		  <select class="ui dropdown">
+		  <option value="">등급</option>
+		  <option value="1">15세미만</option>
+		  <option value="2">17세미만</option>
+		  <option value="3">19세미만</option>
+		  <br>
+		  </select><br/><br/>
+
+>>>>>>> 290aec342da0bc25b1491ef57643733aadbf45e1
 		  <div class="ui labeled input">
 			  <div class="ui label">
 			    상영시작날짜
 			  </div>
+<<<<<<< HEAD
 			  <input type="text" ng-model="movie.startdate">
 		  </div><br/></br/>
 		  
 
+=======
+			  <input type="date" name="date">
+		  </div><br/></br/>
+		  
+>>>>>>> 290aec342da0bc25b1491ef57643733aadbf45e1
 		  <div class="ui labeled input">
 			  <div class="ui label">
 			    상영마감날짜
 			  </div>
+<<<<<<< HEAD
 			  <input type="text" ng-model="movie.enddate">
 		  </div><br/></br/>
 
@@ -296,5 +345,88 @@ function showModalSeat()
 	<div class="ui button">취소</div>
 	<button ng-click="showdata()"></button>
 </div>
+=======
+			  <input type="date" name="date">
+		  </div><br/></br/>
+		  <div class="ui ten primary button">영화 추가</div>
+		  <div class="ui button">취소</div>
+	</div>
+</div>
+
+<div class="ui second modal" style="height:238px;">
+	<div class="title">
+		<h1>극장 입력</h1>
+	</div>
+	<div class="ui divider"></div>
+	<div class="content">
+		<div class="ui labeled input">
+		  <div class="ui label">
+		    극장명
+		  </div>
+		  <input type="text" placeholder="극장명을 입력하세요.">
+		</div><br/></br/>
+		<div class="ui labeled input">
+		  <div class="ui label">
+		    지역명
+		  </div>
+		  <select class="ui dropdown">
+		  <option value="">지역명</option>
+		  <option value="1">천안</option>
+		  <option value="2">수원</option>
+		  <option value="3">성남</option>
+		  <option value="3">서울</option>
+		  </select><br/>
+		</div>
+	</div>
+
+	<div class="ui primary button">극장 추가</div>
+	<div class="ui button">취소</div>
+</div>
+
+<div class="ui three modal" style="height:436px;">
+	<div class="title">
+		<h1>극장별 상영영화 </h1>
+	</div>
+	<div class="ui divider"></div>
+	<div class="content">
+		<div class="ui labeled input">
+			  <div class="ui label">
+			    극장명
+			  </div>
+			  <input type="text" placeholder="극장명을 입력하세요.">
+		</div><br/></br/>
+		<div class="ui labeled input">
+			  <div class="ui label">
+			   날짜
+			  </div>
+			  <input type="date" name="date">
+		  </div><br/></br/>
+
+		<div class="ui labeled input">
+			  <div class="ui label">
+			    영화제목
+			  </div>
+			  <input type="text" placeholder="영화제목을 입력하세요.">
+		</div><br/></br/>
+
+		<div class="ui labeled input">
+			  <div class="ui label">
+			    상영시간
+			  </div>
+			  <input type="time">
+		</div><br/></br/>
+
+		<div class="ui labeled input">
+			  <div class="ui label">
+			    코드명
+			  </div>
+			  <input type="text" placeholder="코드명을 입력하세요.">
+		</div><br/></br/>
+	</div>
+	<div class="ui primary button">상영영화 추가</div>
+	<div class="ui button">취소</div>
+</div>
+
+>>>>>>> 290aec342da0bc25b1491ef57643733aadbf45e1
 </body>
 </html>
